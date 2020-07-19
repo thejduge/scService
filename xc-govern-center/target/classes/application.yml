@@ -1,0 +1,20 @@
+server:
+  #port: ${PORT:50101}  #设置了环境变量port则使用port为端口号
+  port: 50101  #设置了环境变量port则使用port为端口号
+spring:
+  application:
+    name: xc-govern-center
+
+eureka:
+  client:
+    #registerWithEureka: true  # 高可用时,需要将自己注册到其他的服务中
+    registerWithEureka: false  # 高可用时,需要将自己注册到其他的服务中
+    fetchRegistry: false #服务发现,是否从Eureka服务中获取服务
+    serviceUrl:
+      #defaultZone: ${EUREKA_SERVER:http://eureka02:50102/eureka/}
+      defaultZone: http://127.0.0.1:50101/eureka/
+  server:
+    enable-self-preservation: false #是否开启自我保护模式
+    eviction-interval-timer-in-ms: 60000 #服务注册表清理间隔（单位毫秒，默认是60*1000）
+  instance:
+    hostname: ${EUREKA_DOMAIN:eureka01}
